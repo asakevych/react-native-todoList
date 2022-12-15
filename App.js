@@ -1,11 +1,11 @@
-import React, { useState,  useEffect } from 'react';
-import {StyleSheet, View, AsyncStorage, FlatList} from 'react-native';
-import { Navbar } from './src/components/Navbar'
-import { AddTodo } from "./src/components/AddTodo";
-import { TodoList } from "./src/components/TodoItem";
+import React, { useEffect, useState } from 'react';
+import { AsyncStorage, StyleSheet, View } from 'react-native';
+import { Navbar } from './src/components/Navbar';
+import { AddTodo } from './src/components/AddTodo';
+import { TodoList } from './src/components/TodoItem';
 
 export default function App() {
-    const [todos, setTodos] = useState([])
+    const [todos, setTodos] = useState([]);
     const saveTodoToUserDevice = async todos => {
         try {
             const stringifyTodos = JSON.stringify(todos);
@@ -41,40 +41,40 @@ export default function App() {
                 {
                     id: Date.now().toString(),
                     title: title,
-                    completed: false
-                }
-            ]
-        })
-    }
+                    completed: false,
+                },
+            ];
+        });
+    };
 
-    const markTodoComplete = todoId => {
+    const toggleTodoComplete = todoId => {
         setTodos(todos.map(item => {
             if (item.id === todoId) {
-                return {...item, completed: !item.completed};
+                return { ...item, completed: !item.completed };
             }
             return item;
-        }))
+        }));
     };
 
     const deleteTodoItem = todoId => {
-        setTodos(todos.filter(item => item.id !== todoId))
+        setTodos(todos.filter(item => item.id !== todoId));
     };
 
-  return (
-    <View>
-      <Navbar title='Todo App' />
-      <AddTodo onSubmit={addTodo}/>
-      <TodoList
-          markTodoComplete={markTodoComplete}
-          todos={todos}
-          onDelete={deleteTodoItem}
-      />
-    </View>
-  );
+    return (
+        <View>
+            <Navbar title="Todo App"/>
+            <AddTodo onSubmit={ addTodo }/>
+            <TodoList
+                toggleTodoComplete={ toggleTodoComplete }
+                todos={ todos }
+                onDelete={ deleteTodoItem }
+            />
+        </View>
+    );
 };
 
 const styles = StyleSheet.create({
-  listContainer: {
-    margin: 10
-  },
+    listContainer: {
+        margin: 10,
+    },
 });

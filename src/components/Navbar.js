@@ -3,11 +3,11 @@ import { StyleSheet, Text, View } from 'react-native';
 
 export const Navbar = ({ title }) => {
     return (
-        <View style={styles.navbar}>
-            <Text style={styles.text}>{title}</Text>
+        <View style={ styles.navbar }>
+            <Text style={ styles.text }>{ title }</Text>
         </View>
     );
-}
+};
 
 const styles = StyleSheet.create({
     navbar: {
@@ -16,10 +16,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingTop: 10,
-        paddingBottom: 10
+        paddingBottom: 10,
     },
     text: {
         color: '#fff',
-        fontSize: 20
-    }
+        fontSize: 20,
+    },
 });
